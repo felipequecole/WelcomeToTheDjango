@@ -1,0 +1,63 @@
+{% extends 'hello/base.html' %}
+{% block body %}
+    {# Exemplo de comentário #}
+
+    <div class="container">
+    <div class="jumbotron">
+    <h1>Cadastro de alunos</h1>
+        <form method="post" action="." class="form-horizontal">
+        {% csrf_token %} {# necessario colocar token - otherwise não funciona #}
+            <div class="form-group">
+                <label for="nome" class="control-label"> Nome </label>
+                <input type="text" id ="nome" name="nome" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="sobrenome" class="control-label">Sobrenome</label>
+                <input type="text" id="sobrenome" name="sobrenome" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email" class="control-label">E-mail</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="senha" class="control-label">Senha</label>
+                <input type="password" id="senha" name="senha" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="RA" class="control-label">RA</label>
+                <input type="number" id="RA" name="RA" class="form-control" required>
+            </div>
+            <div class = "form-group">
+                <label for="curso">Curso</label>
+                <select name="curso" id="curso" class="custom-select" required>
+                    {% for curso in cursos %}
+                        <option id="curso_{{ curso.id }}" value="{{ curso.id }}">{{ curso.nome_curso }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+        <div class="form-group">
+            <label for="sexo" class="control-label"> Sexo </label>
+            <input type="radio" name="sexo" value="F">Feminino
+            <input type="radio" name="sexo" value="M">Masculino
+        </div>
+
+        <style>
+            .btn-primary{
+                background-color: black;
+                border-color: chartreuse;
+                border-width: 0.1em;
+            }
+        </style>
+
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-primary float-right">
+            </div>
+
+        </form>
+    </div>
+    </div>
+
+
+
+{% endblock body %}
